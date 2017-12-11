@@ -1,0 +1,19 @@
+.post-container {
+    display: flex;
+}
+
+.post-vote-controls {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    margin: 8px;
+    border-right: 1px solid;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.post-info {
+    margin: 8px 0px;
+    display: flex;
+    flex-direction: column;
+}
