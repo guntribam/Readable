@@ -1,0 +1,1 @@
+export { getPostsSaga  } from './getPostsSaga';
