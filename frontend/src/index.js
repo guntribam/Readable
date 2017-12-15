@@ -8,7 +8,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import createSagaMiddleware from 'redux-saga'
 import {initSagas} from './initSagas'
-import {fetchPosts} from "./actions";
+import {initApp} from "./actions";
 
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 //
@@ -24,4 +24,4 @@ ReactDOM.render(
     , document.getElementById('root'));
 registerServiceWorker();
 
-store.dispatch(fetchPosts());
+store.dispatch(initApp());

@@ -1,25 +1,12 @@
-const initialState = {
-	categories: [
-		{
-			name: 'react',
-			path: 'react'
-		},
-		{
-			name: 'redux',
-			path: 'redux'
-		},
-		{
-			name: 'udacity',
-			path: 'udacity'
-		}
-	]
-}
+import { createReducer } from './../utility';
+import {GET_CATEGORIES} from '../actions'
 
-function categories(state = initialState, action){
-	switch (action.type){
-		default:
-			return state;
-	}
-}
+const initialState = []
+
+const categories = createReducer(initialState, {
+    [GET_CATEGORIES](state,{categories}) {
+        return categories;
+    }
+});
 
 export default categories;

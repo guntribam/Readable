@@ -1,15 +1,7 @@
 import React from 'react';
-import Category from "../Category";
+import {connect} from "react-redux";
+import CategoriesView from "./CategoriesView";
 
-const Categories = () =>
-	<div class="card">
-		<h4 class="card-header">Categories</h4>
-		<div className="d-flex flex-column">
-				<Category name="Music"/>
-				<Category name="Tech"/>
-				<Category name="science"/>
-		</div>
-	</div>
+const mapStateToProps = ({categories}) => ({categories})
 
-
-export default Categories;
+export default connect(mapStateToProps)(CategoriesView);
