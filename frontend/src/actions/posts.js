@@ -5,3 +5,6 @@ export const getPosts = makeActionCreator(GET_POSTS, "posts");
 
 export const CREATE_POST = "CREATE_POST";
 export const createPost = makeActionCreator(CREATE_POST);
+
+export const SAVE_POST = "SAVE_POST";
+export const savePost = makeActionCreator(SAVE_POST, "post");

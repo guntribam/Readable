@@ -6,10 +6,20 @@ const MainAreaView = ({newPost, createPost}) =>
     <div className="col-md-8">
         <div className="d-flex justify-content-between">
             <h2>Posts</h2>
-            <button className="btn btn-secondary" onClick={newPost}>New Post</button>
+            {
+                createPost
+                    ? postFormButtons(newPost)
+                    : <button className="btn btn-secondary" onClick={newPost}>New Post</button>
+            }
         </div>
         <hr className="my-3"/>
-        {console.log("olha o createPost", createPost)}
         {createPost ? <AddPost/> : <Posts/>}
     </div>
+
+const postFormButtons = (newPost) =>
+    <div>
+        <button className="btn btn-secondary mr-2" onClick={newPost}>Salvar</button>
+        <button className="btn btn-secondary" onClick={newPost}>Cancelar</button>
+    </div>
+
 export default MainAreaView;
