@@ -1,19 +1,27 @@
-import { createReducer } from './../utility';
-import {GET_POSTS} from "../actions";
+import {GET_POSTS, CREATE_POST} from "../actions";
 
-const initialState = [];
+const initialState = {
+    createPost: false
+};
 
-const posts = createReducer(initialState,{
-    [GET_POSTS](state,{posts}) {
-        return posts
-    },
-    [GET_POSTS](state,{}) {
-        return {
-            ...state,
-            addPost: true
-        }
+const posts = (state = {}, action) => {
+    switch (action.type) {
+        case GET_POSTS:
+            const {posts} = action;
+            return {
+                ...state,
+                posts
+            }
+        case CREATE_POST:
+            console.log("passou", !state.createPost)
+            return {
+                ...state,
+                createPost: !state.createPost
+            }
+        default:
+            return state;
     }
-    ,
-});
+}
+
 
 export default posts;

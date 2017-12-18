@@ -1,12 +1,20 @@
-import { createReducer } from './../utility';
 import {GET_CATEGORIES} from '../actions'
 
-const initialState = []
+const initialState = {
+    categories: []
+};
 
-const categories = createReducer(initialState, {
-    [GET_CATEGORIES](state,{categories}) {
-        return categories;
+const categories = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_CATEGORIES:
+            const {categories} = action;
+            return {
+                ...state,
+                categories
+            };
+        default:
+            return state;
     }
-});
+}
 
 export default categories;

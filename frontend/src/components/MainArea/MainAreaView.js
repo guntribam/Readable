@@ -1,13 +1,15 @@
 import React from 'react';
-import PostsController from "../PostsController";
+import AddPost from '../AddPost';
+import Posts from '../Posts';
 
-const MainAreaView = ({createPost}) =>
+const MainAreaView = ({newPost, createPost}) =>
     <div className="col-md-8">
         <div className="d-flex justify-content-between">
             <h2>Posts</h2>
-            <button className="btn btn-secondary" onClick={createPost()}>New Post</button>
+            <button className="btn btn-secondary" onClick={newPost}>New Post</button>
         </div>
         <hr className="my-3"/>
-        <PostsController />
+        {console.log("olha o createPost", createPost)}
+        {createPost ? <AddPost/> : <Posts/>}
     </div>
 export default MainAreaView;

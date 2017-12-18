@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import AddPost from "./AddPost";
+import AddPostView from "./AddPostView";
 
-const mapStateToProps = ({posts}) => ({posts})
+const mapStateToProps = () => {};
 
-export default connect(mapStateToProps)(AddPost);
+export default connect(mapStateToProps)(AddPostView);

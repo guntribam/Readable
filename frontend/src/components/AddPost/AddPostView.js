@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddPost = () =>
+const AddPostView = () =>
     <form>
         <div className="form-row">
             <div className="col">
@@ -11,4 +11,4 @@ const AddPost = () =>
             </div>
         </div>
     </form>
-export default AddPost;
+export default AddPostView;

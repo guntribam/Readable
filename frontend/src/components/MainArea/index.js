@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {createPost} from '../../actions'
 import MainAreaView from "./MainAreaView";
 
-const mapStateToProps = () => {}
-const mapDispatchToProps = (dispatch) => ({createPost: () => dispatch(createPost())})
+const mapStateToProps = ({postsStore}) => ({createPost: postsStore.createPost})
+const mapDispatchToProps = (dispatch) => ({newPost: () => dispatch(createPost())})
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainAreaView);

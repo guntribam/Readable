@@ -2,7 +2,8 @@ import React from 'react';
 import Post from "../Post";
 
 const Posts = ({posts}) =>
-        {posts.map(post =>
+    <div>
+        {posts && posts.map(post =>
             <Post key={post.id}
                   title={post.title}
                   body={post.body}
@@ -15,4 +16,5 @@ const Posts = ({posts}) =>
                   id={post.id}
             />
         )}
+    </div>
 export default Posts;
