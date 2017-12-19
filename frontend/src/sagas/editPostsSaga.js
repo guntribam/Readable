@@ -1,7 +1,8 @@
 import  {take, put} from 'redux-saga/effects'
 import {SAVE_POST} from "../actions";
 
-export function* savePostsSaga() {
+export function* editPostsSaga() {
+    let postFormChangesChannel = yield actop
     yield take(SAVE_POST);
     const response = yield fetch('http://localhost:3001/posts', {headers: {Authorization: 'authorized'}});
     const posts = yield response.json();

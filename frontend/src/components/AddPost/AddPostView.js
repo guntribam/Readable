@@ -1,13 +1,15 @@
 import React from 'react';
 
-const AddPostView = () =>
-    <form>
+const AddPostView = ({postFormEdit}) =>
+    <div>
         <div className="form-group">
-            <input type="email" className="form-control" placeholder="Post Title" />
+            <input type="text" className="form-control" placeholder="Post Title"
+                   onChange={(e) => postFormEdit(e.target.name, e.target.value)} name="title"/>
         </div>
         <div className="form-group">
-            <textarea className="form-control" placeholder="Post content" rows="10"/>
+            <textarea className="form-control" placeholder="Post content" rows="10"
+                      onChange={(e) => postFormEdit(e.target.name, e.target.value)} name="content"/>
         </div>
-    </form>
+    </div>
 
 export default AddPostView;

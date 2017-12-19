@@ -3,7 +3,8 @@ import {makeActionCreator} from "../utility";
 export {
     getPosts, GET_POSTS,
     createPost, CREATE_POST,
-    savePost, SAVE_POST
+    savePost, SAVE_POST,
+    postFormEdit, EDIT_POST
 } from './posts'
 
 export {getCategories, GET_CATEGORIES} from './categories'

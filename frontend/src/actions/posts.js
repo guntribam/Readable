@@ -8,3 +8,6 @@ export const createPost = makeActionCreator(CREATE_POST);
 
 export const SAVE_POST = "SAVE_POST";
 export const savePost = makeActionCreator(SAVE_POST, "post");
+
+export const EDIT_POST = "EDIT_POST";
+export const postFormEdit = makeActionCreator(EDIT_POST, "field", "value");

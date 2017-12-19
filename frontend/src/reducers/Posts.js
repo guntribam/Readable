@@ -1,7 +1,8 @@
-import {GET_POSTS, CREATE_POST, SAVE_POST} from "../actions";
+import {GET_POSTS, CREATE_POST, SAVE_POST, EDIT_POST} from "../actions";
 
 const initialState = {
-    createPost: false
+    createPost: false,
+    postForm: {}
 };
 
 const posts = (state = initialState, action) => {
@@ -22,7 +23,15 @@ const posts = (state = initialState, action) => {
                 ...state,
                 createPost: !state.createPost
             }
-
+        case EDIT_POST:
+            const {field, value} = action;
+            return {
+                ...state,
+                postForm: {
+                    ...state.postForm,
+                    [field]: value
+                }
+            }
         default:
             return state;
     }

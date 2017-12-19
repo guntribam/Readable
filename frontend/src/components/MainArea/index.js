@@ -11,7 +11,7 @@ const mapStateToProps = ({postsStore}) => {
 const mapDispatchToProps = (dispatch) => (
     {
         newPost: () => dispatch(createPost()),
-        savePost: () => dispatch(savePost())
+        savePost: (post) => dispatch(savePost(post))
     })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainAreaView);
