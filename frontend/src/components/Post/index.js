@@ -1,19 +1,18 @@
 import React from 'react';
-import './Post.css'
+import {connect} from 'react-redux'
+import PostView from "./PostView";
+import {toogleUpdatePostForm} from "../../state-management/posts/actions";
 
-const Post = ({title, body, author, voteScore, category, commentCount}) =>
-	<div className="card my-3">
-		<div className="post-container">
-			<div className="post-vote-controls">
-				<button>+</button>
-				<strong>{voteScore}</strong>
-				<button>-</button>
-			</div>
-			<div className="d-flex flex-column justify-content-center">
-				<h3>{title}</h3>
-				<span>submitted 5 hours ago by {author} to {category} - {commentCount} comments</span>
-			</div>
-		</div>
-	</div>
+const mapStateToProps = ({usersStore}) => (
+	{
+		currentUser: usersStore.user
+	}
+);
 
-export default Post;
+const mapDispatchToProps = (dispatch) => (
+	{
+		toogleUpdatePostForm: (post) => dispatch(toogleUpdatePostForm(post))
+	}
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostView);

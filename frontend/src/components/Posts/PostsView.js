@@ -2,19 +2,7 @@ import React from 'react';
 import Post from "../Post";
 
 const Posts = ({posts}) =>
-    <div>
-        {posts && posts.map(post =>
-            <Post key={post.id}
-                  title={post.title}
-                  body={post.body}
-                  author={post.author}
-                  timestamp={post.timestamp}
-                  category={post.category}
-                  voteScore={post.voteScore}
-                  deleted={post.deleted}
-                  commentCount={post.commentCount}
-                  id={post.id}
-            />
-        )}
-    </div>
+	<div>
+		{posts && posts.map((post, index) => <Post key={index} post={post} />)}
+	</div>;
 export default Posts;
