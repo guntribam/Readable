@@ -11,31 +11,29 @@ import 'open-iconic/font/css/open-iconic-bootstrap.css'
 
 //REDUX
 import reducer from './state-management/combineReducers';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 
 //REDUX-SAGA
-import createSagaMiddleware from 'redux-saga'
-import {initSagas} from './state-management/initSagas'
+import {sagaMiddleware,initSagas} from './state-management/config/saga-config'
 
 //MAIN ACTION
 import {initApp} from "./state-management/app-actions";
 
 //ROUTER
-import createHistory from 'history/createBrowserHistory'
-import {ConnectedRouter, routerMiddleware, push} from 'react-router-redux'
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const history = createHistory()
+import {ConnectedRouter as Router} from 'react-router-redux'
+import {routeMiddleware, history} from './state-management/config/router-config'
 
-const routeMiddleware = routerMiddleware(history);
-const sagaMiddleware = createSagaMiddleware();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(reducer,  composeEnhancers, applyMiddleware(sagaMiddleware, routeMiddleware));
 
-const store = createStore(reducer, applyMiddleware(sagaMiddleware, routeMiddleware));
 initSagas(sagaMiddleware);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App/>
+		<Router history={history}>
+			<App/>
+		</Router>
 	</Provider>
 	, document.getElementById('root'));
 registerServiceWorker();

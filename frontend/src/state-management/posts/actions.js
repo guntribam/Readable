@@ -18,5 +18,8 @@ export const submitPost = makeActionCreator(SUBMIT_POST, "post")
 export const SAVE_POST = "SAVE_POST";
 export const savePost = makeActionCreator(SAVE_POST, "post")
 
+export const UPDATE_POST_SAGA = "UPDATE_POST_SAGA";
+export const updatePostSaga = makeActionCreator(UPDATE_POST_SAGA, "post")
+
 export const UPDATE_POST = "UPDATE_POST";
 export const updatePost = makeActionCreator(UPDATE_POST, "post")

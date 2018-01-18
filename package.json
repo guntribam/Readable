@@ -9,5 +9,8 @@
   },
   "scripts": {
     "start": "cd api-server npm start && cd ../frontend npm start"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.4.1"
   }
 }

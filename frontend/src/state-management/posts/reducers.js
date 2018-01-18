@@ -56,20 +56,18 @@ const posts = (state = initialState, action) => {
 		case SAVE_POST:
 			return {
 				...state,
-				posts: [...state.posts, action.post]
+				posts: {
+					...state.posts,
+					[action.post.id]: action.post
+				}
 			};
 		case UPDATE_POST:
-			const {post} = action;
 			return {
 				...state,
-				postForm: {
-					author: post.author,
-					category: post.category,
-					body: post.body,
-					title: post.title,
-					isValid: true
-				},
-				posts: [...state.posts, action.post]
+				posts: {
+					...state.posts,
+					[action.post.id]: action.post
+				}
 			};
 		default:
 			return state;
