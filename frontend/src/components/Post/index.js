@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import PostView from "./PostView";
-import {toogleUpdatePostForm} from "../../state-management/posts/actions";
+import {startUpdateSaga} from "../../state-management/posts/actions";
 
 const mapStateToProps = ({usersStore}) => (
 	{
@@ -9,10 +9,10 @@ const mapStateToProps = ({usersStore}) => (
 	}
 );
 
-const mapDispatchToProps = (dispatch) => (
-	{
-		toogleUpdatePostForm: (post) => dispatch(toogleUpdatePostForm(post))
-	}
-);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startUpdateSaga: (post) => dispatch(startUpdateSaga(post))
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView);

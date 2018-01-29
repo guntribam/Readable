@@ -15,8 +15,6 @@ const initialState = {
 		title: '',
 		isValid: true
 	},
-	showPostForm: false,
-	isUpdating: false
 };
 
 const posts = (state = initialState, action) => {
@@ -34,24 +32,6 @@ const posts = (state = initialState, action) => {
 					...state.postForm,
 					[field]: value
 				}
-			};
-		case TOOGLE_CREATE_POST_FORM:
-			return {
-				...state,
-				postForm: {
-					...state.postForm,
-					category: ''
-				},
-				showPostForm: !state.showPostForm
-			};
-		case TOOGLE_UPDATE_POST_FORM:
-			return {
-				...state,
-				postForm: {
-					...state.postForm,
-					...action.post
-				},
-				isUpdating: !state.isUpdating
 			};
 		case SAVE_POST:
 			return {

@@ -1,52 +1,60 @@
-import {takeLatest, take, put} from 'redux-saga/effects'
-import {INIT_APP, initApp} from "../app-actions";
+import {takeLatest, take, put, all, call} from 'redux-saga/effects'
+import {INIT_APP} from "../app-actions";
+import {push} from 'react-router-redux';
+import {getPostsServer, createPostServer, updatePostServer} from "../../api/posts";
 import {
-	SUBMIT_POST,
-	UPDATE_POST_SAGA,
-	savePost, getPosts, updatePost,
-	toogleCreatePostForm,
-	toogleUpdatePostForm,
+    SUBMIT_POST,
+    UPDATE_POST_SAGA,
+    savePost, getPosts, updatePost,
+    postFormEdit, START_UPDATE_SAGA,
 } from "./actions";
 
 export function* getPostsSaga() {
-	yield take(INIT_APP);
-	const response = yield fetch('http://localhost:3001/posts', {headers: {Authorization: 'authorized'}});
-	const posts = yield response.json();
-	const postsAdapted = posts.reduce((prev, curr) => {
-		prev[curr.id] = curr;
-		return prev;
-	}, {})
-	yield put(getPosts(postsAdapted))
+    yield take(INIT_APP);
+    try {
+        const response = yield getPostsServer();
+        const posts = yield response.json();
+        const postsAdapted = posts.reduce((prev, curr) => {
+            prev[curr.id] = curr;
+            return prev;
+        }, {})
+        yield put(getPosts(postsAdapted))
+    } catch (error) {
+        console.log("Erro no getPostsSaga", error)
+    }
 }
 
 export function* savePostsSaga() {
-	yield takeLatest(SUBMIT_POST, savePosts);
-}
-
-function* savePosts({post}) {
-	const response = yield fetch('http://localhost:3001/posts',
-		{
-			method: 'POST',
-			body: JSON.stringify(post),
-			headers: {'Content-Type': 'application/json', 'Authorization': 'authorized'}
-		}
-	);
-	const data = yield response.json();
-	yield put(savePost(data))
+    yield takeLatest(SUBMIT_POST, function* ({post}) {
+        try {
+            const response = yield createPostServer(post)
+            const data = yield response.json();
+            yield put(savePost(data))
+            yield put(push('/'))
+        } catch (error) {
+            console.log("Erro no savePostsSaga", error)
+        }
+    });
 }
 
 export function* updatePostSaga() {
-	const {post} = yield take(UPDATE_POST_SAGA);
-	console.log("update post", post)
-	const response = yield fetch(`http://localhost:3001/posts/${post.id}`,
-		{
-			method: 'PUT',
-			body: JSON.stringify(post),
-			headers: {'Content-Type': 'application/json', 'Authorization': 'authorized'}
-		}
-	);
-	const data = yield response.json();
-	yield put(updatePost(data))
-	yield put(toogleUpdatePostForm(post))
-	yield put(initApp())
+    yield takeLatest(UPDATE_POST_SAGA, function* ({post}) {
+        try {
+            const response = yield updatePostServer(post)
+            const data = yield response.json();
+            yield put(updatePost(data))
+            yield put(push('/'))
+        }
+        catch (error) {
+            console.log("Erro no updatePostServer", error)
+        }
+    });
+
+}
+
+export function* startUpdateSaga() {
+    yield takeLatest(START_UPDATE_SAGA, function* ({post}) {
+        yield all(Object.keys(post).map(key => put(postFormEdit(key, post[key]))))
+        yield put(push('/update'))
+    });
 }

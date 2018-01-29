@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "history": "^4.7.2",
-    "open-iconic": "^1.1.1",
-    "react-router-redux": "^5.0.0-alpha.9"
   },
   "scripts": {
     "start": "cd api-server npm start && cd ../frontend npm start"

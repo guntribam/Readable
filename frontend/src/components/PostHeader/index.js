@@ -9,4 +9,4 @@ const mapDispatchToProps = (dispatch) => {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostHeaderView);
+export default connect(null, null)(PostHeaderView);

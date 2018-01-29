@@ -110,9 +110,15 @@ function disable (token, id) {
 }
 
 function edit (token, id, post) {
+    console.log("Olha os parametros", token, id, post)
     return new Promise((res) => {
         let posts = getData(token)
+        console.log("olha os posts", posts)
+        console.log("olha o post[id]", posts[id])
+        console.log("olha o post[id][id]", posts[id][id])
         for (prop in post) {
+            console.log("olha a prop", prop)
+            console.log("olha prop content ", posts[id][prop])
             posts[id][prop] = post[prop]
         }
         res(posts[id])
